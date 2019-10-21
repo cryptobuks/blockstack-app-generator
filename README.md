@@ -2,39 +2,55 @@
 
 ## Installation
 
-1) Install Blockstack for desktop:
+1. If not already installed, install [Node.js](https://nodejs.org/) v10 or higher _(minimum required version is Node.js v8)_.
 
-- [Releases](https://github.com/blockstack/blockstack-browser/releases)
+2. Create a new directory and `cd` into it:
 
-2) Install [Yeoman](http://yeoman.io) and the blockstack app generator using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+    ```bash
+    mkdir hello-blockstack
+    cd hello-blockstack
+    ```
+    
+3. Generate a Blockstack app, you can specify the framework.
+
+    | Framework | Use this command to install |
+    |------------------|-----------------------------|
+    | Plain Javascript | `npx generator-blockstack --plain` |
+    | React | `npx generator-blockstack --react` |
+    | Vue | `npx generator-blockstack --vue` |
+
+    For additional options run `npx generator-blockstack --help`.
+
+    > Alternatively, global package installation can be used. Try this if running into problems:
+    > ```
+    > npm install -g yo generator-blockstack
+    > yo blockstack
+    > ```
+
+4. Start the development server:
+
+    ```bash
+    npm run start
+    ```
+
+
+## Testing the generated app
+
+The single tests works for all generators:
+
 
 ```bash
-npm install -g yo generator-blockstack
+npm run test
 ```
 
-3) Create a new directory and `cd` into it:
 
-```bash
-mkdir hello-blockstack && cd $_
-```
+## Testing the generator project
 
-4) Generate your Blockstack app:
-
-```bash
-yo blockstack
-```
-
-*For React.JS*
-
-```bash
-yo blockstack:react
-```
-
-5) Start the development server:
-
-```bash
-npm run start
-```
+Within the repo directory, run `npm run test`. This command will generate the variants of Blockstack apps 
+in folders called `.app-gen-test`, `.webpack-gen-test`, `.react-gen-test`, and `.vue-gen-test`. The test asserts 
+that all expected files were actually created. It also runs the `npm run test` command within each app. For the
+React, Webpack, and Vue generators, `npm run test` currently builds the app, but that command can be
+changed. (For a React app, the typical test command is `react-scripts test`.)
 
 ## License
 
@@ -45,5 +61,5 @@ MIT © [Blockstack](https://blockstack.com)
 [npm-url]: https://www.npmjs.com/package/generator-blockstack
 [circleci-image]: https://circleci.com/gh/blockstack/blockstack-app-generator.svg?style=shield&circle-token=:circle-token
 [circleci-url]: https://circleci.com/gh/blockstack/blockstack-app-generator/tree/master
-[slack-image]: http://slack.blockstack.org/badge.svg
+[slack-image]: https://img.shields.io/badge/join-slack-e32072.svg
 [slack-url]: http://slack.blockstack.org/
